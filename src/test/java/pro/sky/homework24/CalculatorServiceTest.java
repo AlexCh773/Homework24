@@ -71,15 +71,33 @@ class CalculatorServiceTest {
                 Arguments.of(-1, -4, 3));
     }
 
+    @ParameterizedTest
+    @MethodSource("provideParamsForMinusTest")
+    public void checkMinusOperation(int num1, int num2, int result) {
+        assertEquals(result, out.minus(num1, num2));
+    }
+
     public static Stream<Arguments> provideParamsForMultiplyTest() {
         return Stream.of(Arguments.of(1, -3, -3),
                 Arguments.of(0, 0, 0),
                 Arguments.of(-1, -4, 4));
     }
 
+    @ParameterizedTest
+    @MethodSource("provideParamsForMultiplyTest")
+    public void checkMultiplyOperation(int num1, int num2, int result) {
+        assertEquals(result, out.multiply(num1, num2));
+    }
+
     public static Stream<Arguments> provideParamsForDivideTest() {
         return Stream.of(Arguments.of(1, -1, -1),
                 Arguments.of(10, 2, 5),
-                Arguments.of(-4, -1, -4));
+                Arguments.of(-4, -1, 4));
+    }
+
+    @ParameterizedTest
+    @MethodSource("provideParamsForDivideTest")
+    public void checkDivideOperation(int num1, int num2, int result) {
+        assertEquals(result, out.divide(num1, num2));
     }
 }
